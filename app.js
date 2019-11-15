@@ -45,8 +45,8 @@ class UI{
         const form = document.querySelector('#book-form');
         container.insertBefore(div, form);
 
-        //vanish in three seconds
-        setTimeout(() => document.querySelector('.alert').remove(), 3000)
+        //Vanish in three seconds
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
     }
 
     static clearFields(){
@@ -66,7 +66,7 @@ class Store {
             books = JSON.parse(localStorage.getItem('books'));
         }
 
-        return books;   
+        return books;
     }
 
     static addBook(book){
@@ -77,7 +77,7 @@ class Store {
     }
 
     static removeBook(isbn){
-        const books = Store.getBooks();     
+        const books = Store.getBooks();
 
         books.forEach((book, index) => {
             if(book.isbn === isbn){
@@ -107,22 +107,22 @@ document.querySelector('#book-form').addEventListener('submit', (e) =>{
     if(title === '' || author === '' || isbn === ''){
         UI.showAlert('Please fill in all fields!', 'danger');
     }else{
-        //Instantiate book 
+        //Instantiate book
         const book = new Book(title, author, isbn);
 
         //Add Book to List
         UI.addBookToList(book);
 
         //Add book to store
-        Store.addBook(book)
+        Store.addBook(book);
 
-        //show success message
+        //Show success message
         UI.showAlert('Book Added!', 'success');
 
         //Clear fields
         UI.clearFields();
     }
-})
+});
 
 //Event: Remove a book
 document.querySelector('#book-list').addEventListener('click', (e) =>{
@@ -131,7 +131,7 @@ document.querySelector('#book-list').addEventListener('click', (e) =>{
     //Remove book from store
     Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
-    //show success message
+    //Show success message
     UI.showAlert('Book Deleted!', 'info');
 });
 
